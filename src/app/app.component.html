@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg custom-navbar padding">
+  <div class="container-fluid">
+    <a class="navbar-brand fontsize" style="color:maroon; font-weight: 600;">
+      <img src="assets/removebg.png" alt="Logo" width="40" height="50" class="d-inline-block align-text-end logostyle" > <span style="color: black;">Spin</span>Book</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link fontsize effect" [routerLink]="['home']" routerLinkActive="active" style="color:black;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fontsize effect" [routerLink]="['about']" routerLinkActive="active" style="color:black;">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fontsize effect" [routerLink]="['contact']" routerLinkActive="active" style="color:black;">Contact-us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fontsize effect" [routerLink]="['viewtable']" routerLinkActive="active" *ngIf="isUser()" style="color:black;">Browse Tables</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fontsize effect" [routerLink]="['bookslot']" routerLinkActive="active" *ngIf="isUser()" style="color:black;">My Booking</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fontsize effect" [routerLink]="['admin']" routerLinkActive="active" *ngIf="isAdmin()"style="color:black;">DashBoard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fontsize effect" [routerLink]="['update']" routerLinkActive="active" *ngIf="isAdmin()"style="color:black;">Update</a>
+        </li>
+        </ul>
+
+        <button type="button" class="bttn bttn-login d-flex justify-content-end align-items-end marginright color"
+        [routerLink]="['login']" *ngIf="!isUser() && !isAdmin()" routerlinkActive="active">Login</button>
+        <button type="button" class="bttn bttn-register d-flex justify-content-end align-items-end m-6 colour"
+        [routerLink]="['createAcc']" *ngIf="!isUser() && !isAdmin()" routerlinkActive="active">Create Account</button>
+
+        <button type="button" class="btn btn-secondary d-flex justify-content-end align-items-end m-3 colors" *ngIf="isUser()|| isAdmin()"
+         (click)="logout()">Logout</button>
+    </div>
+  </div>
+</nav>
+<main >
+  <router-outlet></router-outlet>
+  <ng-toast [position]="ToasterPosition.TOP_RIGHT"/>
+</main>
